@@ -1,7 +1,7 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.ServiceBus.Messaging;
+using Microsoft.Azure.EventHubs;
 using Newtonsoft.Json;
 using Slalom.Stacks.Communication;
 using Slalom.Stacks.Communication.Logging;
@@ -27,7 +27,7 @@ namespace Slalom.Stacks.Logging.EventHub
         {
             Argument.NotNull(() => options);
 
-            _client = EventHubClient.CreateFromConnectionString(options.ConnectionString, options.EventHubName);
+            _client = EventHubClient.CreateFromConnectionString(options.ConnectionString);
         }
 
         /// <summary>

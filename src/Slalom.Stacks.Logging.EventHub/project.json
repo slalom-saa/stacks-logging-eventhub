@@ -1,5 +1,5 @@
 ﻿{
-  "version": "1.0.2-*",
+  "version": "1.0.3-*",
   "authors": [ "Slalom Architect Academy" ],
   "packOptions": {
     "tags": [ "slalom", "stacks", "logging", "azure", "eventhub" ],
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "NETStandard.Library": "1.6.1",
+    "Microsoft.Azure.EventHubs": "0.0.3-preview",
     "Slalom.Stacks": "1.0.33"
   },
 
@@ -18,15 +19,14 @@
   },
 
   "frameworks": {
-    //"netcoreapp1.0": {
-    //  "imports": [
-    //    "dotnet54",
-    //    "portable-net45+win8"
-    //  ]
-    //},
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet54",
+        "portable-net45+win8"
+      ]
+    },
     "net461": {
       "dependencies": {
-        "WindowsAzure.ServiceBus": "3.4.3"
       },
       "imports": "dnxcore50"
     }
