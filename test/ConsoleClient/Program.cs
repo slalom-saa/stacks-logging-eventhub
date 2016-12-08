@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Slalom.Stacks.Communication;
@@ -13,13 +12,6 @@ namespace ConsoleClient
 {
     public class Program
     {
-        public static void Main(string[] args)
-        {
-            new Program().Run();
-            Console.WriteLine("Press any key to stop...");
-            Console.ReadKey();
-        }
-
         public class TestEvent : Event
         {
         }
@@ -36,17 +28,21 @@ namespace ConsoleClient
             }
         }
 
+        public static void Main(string[] args)
+        {
+            new Program().Run();
+            Console.WriteLine("Press any key to stop...");
+            Console.ReadKey();
+        }
+
         public async Task Run()
         {
             try
             {
                 using (var container = new ApplicationContainer(this))
                 {
-                    container.UseEventHubLogging(e =>
-                    {
-                        e.WithConnection("Endpoint=sb://slalom-stacks.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=F6T4184DOxraeZi72ZBtnqUuNX2P4kLt9xpOmNw8UaA=")
-                         .WithEventHubName("local");
-                    });
+                    container.UseDeveloperSettings()
+                             .UseEventHubLogging(e => e.WithEventHubName("x"));
 
                     await container.Bus.Send(new TestCommand());
                 }

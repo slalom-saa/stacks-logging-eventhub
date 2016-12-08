@@ -10,9 +10,9 @@ namespace Slalom.Stacks.Logging.EventHub
     /// </summary>
     public class EventHubLoggingOptions
     {
-        internal string EventHubName { get; private set; }
+        internal string EventHubName { get; set; }
 
-        internal string ConnectionString { get; private set; }
+        internal string ConnectionString { get; set; }
 
         /// <summary>
         /// Sets the connection string to use.

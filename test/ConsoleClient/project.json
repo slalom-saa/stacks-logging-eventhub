@@ -1,20 +1,23 @@
 {
   "version": "1.0.0-*",
+  "userSecretsId": "StacksEventHub-B4AB8D2B-7A1D-4797-84EB-72086C26CFE9",
   "buildOptions": {
     "emitEntryPoint": true
   },
-
   "dependencies": {
+    "Microsoft.Extensions.Configuration.UserSecrets": "1.1.0",
     "Slalom.Stacks.Logging.EventHub": {
       "target": "project"
     }
   },
-
   "frameworks": {
     "net461": {
       "dependencies": {
       },
       "imports": "dnxcore50"
     }
+  },
+  "tools": {
+    "Microsoft.Extensions.SecretManager.Tools": "1.1.0-preview4-final"
   }
 }
