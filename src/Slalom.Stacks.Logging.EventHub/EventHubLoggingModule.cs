@@ -1,5 +1,7 @@
 using System;
 using Autofac;
+using Microsoft.Extensions.Configuration;
+using Slalom.Stacks.Configuration;
 using Slalom.Stacks.Validation;
 
 namespace Slalom.Stacks.Logging.EventHub
@@ -52,9 +54,15 @@ namespace Slalom.Stacks.Logging.EventHub
             base.Load(builder);
 
             builder.Register(c => new EventHubAuditStore(_options))
-                   .AsImplementedInterfaces()
-                   .AsSelf()
-                   .SingleInstance();
+                    .AsImplementedInterfaces()
+                    .AsSelf()
+                    .SingleInstance()
+                    .OnPreparing(e =>
+                    {
+                        var configuration = e.Context.Resolve<IConfiguration>();
+                        _options.ConnectionString = configuration["Stacks:Logging:EventHub:ConnectionString"] ?? _options.ConnectionString;
+                        _options.EventHubName = configuration["Stacks:Logging:EventHub:Name"] ?? _options.EventHubName;
+                    });
         }
     }
 }

@@ -1,15 +1,16 @@
 ﻿{
-  "version": "1.0.1-*",
+  "version": "1.0.5-*",
   "authors": [ "Slalom Architect Academy" ],
   "packOptions": {
     "tags": [ "slalom", "stacks", "logging", "azure", "eventhub" ],
     "licenseUrl": "http://www.apache.org/licenses/LICENSE-2.0",
     "requireLicenseAcceptance": true,
-    "summary": "The Azure Event Hub Logging blocks for Stacks."
+    "summary": "Azure Event Hub Logging blocks for Slalom.Stacks."
   },
   "dependencies": {
     "NETStandard.Library": "1.6.1",
-    "Slalom.Stacks": "1.0.29"
+    "Microsoft.Azure.EventHubs": "0.0.3-preview",
+    "Slalom.Stacks": "1.0.33"
   },
 
   "buildOptions": {
@@ -18,15 +19,14 @@
   },
 
   "frameworks": {
-    //"netcoreapp1.0": {
-    //  "imports": [
-    //    "dotnet54",
-    //    "portable-net45+win8"
-    //  ]
-    //},
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet54",
+        "portable-net45+win8"
+      ]
+    },
     "net461": {
       "dependencies": {
-        "WindowsAzure.ServiceBus": "3.4.3"
       },
       "imports": "dnxcore50"
     }
