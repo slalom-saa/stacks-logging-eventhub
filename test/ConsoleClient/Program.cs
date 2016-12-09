@@ -25,8 +25,7 @@ namespace ConsoleClient
             {
                 using (var container = new ApplicationContainer(this))
                 {
-                    container.UseDeveloperSettings()
-                             .UseEventHubLogging();
+                    container.UseEventHubLogging();
 
                     await container.Bus.Send(new TestCommand());
                 }
