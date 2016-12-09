@@ -60,14 +60,8 @@ namespace Slalom.Stacks.Logging.EventHub
                     .OnPreparing(e =>
                     {
                         var configuration = e.Context.Resolve<IConfiguration>();
-                        if (configuration["EventHub:ConnectionString"] != null)
-                        {
-                            _options.ConnectionString = configuration["EventHub:ConnectionString"];
-                        }
-                        if (configuration["EventHub:Name"] != null)
-                        {
-                            _options.EventHubName = configuration["EventHub:Name"];
-                        }
+                        _options.ConnectionString = configuration["Stacks:Logging:EventHub:ConnectionString"] ?? _options.ConnectionString;
+                        _options.EventHubName = configuration["Stacks:Logging:EventHub:Name"] ?? _options.EventHubName;
                     });
         }
     }

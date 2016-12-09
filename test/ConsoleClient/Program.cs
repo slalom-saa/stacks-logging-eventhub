@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Slalom.Stacks.Communication;
+using ConsoleClient.Commands;
 using Slalom.Stacks.Configuration;
 using Slalom.Stacks.Logging.EventHub;
 
@@ -12,22 +12,6 @@ namespace ConsoleClient
 {
     public class Program
     {
-        public class TestEvent : Event
-        {
-        }
-
-        public class TestCommand : Command<TestEvent>
-        {
-        }
-
-        public class TestCommandHandler : CommandHandler<TestCommand, TestEvent>
-        {
-            public override Task<TestEvent> Handle(TestCommand command)
-            {
-                return Task.FromResult(new TestEvent());
-            }
-        }
-
         public static void Main(string[] args)
         {
             new Program().Run();
@@ -42,7 +26,7 @@ namespace ConsoleClient
                 using (var container = new ApplicationContainer(this))
                 {
                     container.UseDeveloperSettings()
-                             .UseEventHubLogging(e => e.WithEventHubName("x"));
+                             .UseEventHubLogging();
 
                     await container.Bus.Send(new TestCommand());
                 }
@@ -51,7 +35,7 @@ namespace ConsoleClient
             {
                 Console.WriteLine(exception);
             }
-            Console.WriteLine("Done executing");
+            Console.WriteLine("Done with async execution.");
         }
     }
 }

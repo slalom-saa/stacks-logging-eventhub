@@ -27,7 +27,7 @@ namespace Slalom.Stacks.Logging.EventHub
         {
             Argument.NotNull(() => options);
 
-            _client = EventHubClient.CreateFromConnectionString(options.ConnectionString);
+            _client = EventHubClient.CreateFromConnectionString(options.ConnectionString + ";EntityPath=" + options.EventHubName);
         }
 
         /// <summary>
