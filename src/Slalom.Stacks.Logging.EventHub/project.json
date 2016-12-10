@@ -10,7 +10,7 @@
   "dependencies": {
     "NETStandard.Library": "1.6.1",
     "Microsoft.Azure.EventHubs": "0.0.3-preview",
-    "Slalom.Stacks": "1.0.37"
+    "Slalom.Stacks": "1.0.39"
   },
 
   "buildOptions": {
