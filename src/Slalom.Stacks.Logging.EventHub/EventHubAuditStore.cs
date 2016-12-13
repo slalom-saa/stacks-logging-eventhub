@@ -25,7 +25,7 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <param name="options">The options to use.</param>
         public EventHubAuditStore(EventHubLoggingOptions options)
         {
-            Argument.NotNull(() => options);
+            Argument.NotNull(options, nameof(options));
 
             _client = EventHubClient.CreateFromConnectionString(options.ConnectionString + ";EntityPath=" + options.EventHubName);
         }
