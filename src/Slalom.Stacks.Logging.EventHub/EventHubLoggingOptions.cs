@@ -21,7 +21,7 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <returns>Returns this instance for method chaining.</returns>
         public EventHubLoggingOptions WithConnection(string connectionString)
         {
-            Argument.NotNullOrWhiteSpace(() => connectionString);
+            Argument.NotNullOrWhiteSpace(connectionString, nameof(connectionString));
 
             this.ConnectionString = connectionString;
             return this;
@@ -34,7 +34,7 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <returns>Returns this instance for method chaining.</returns>
         public EventHubLoggingOptions WithEventHubName(string name)
         {
-            Argument.NotNullOrWhiteSpace(() => name);
+            Argument.NotNullOrWhiteSpace(name, nameof(name));
 
             this.EventHubName = name;
             return this;

@@ -16,7 +16,7 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <returns>Returns the container instance for method chaining.</returns>
         public static void UseEventHubLogging(this ApplicationContainer instance)
         {
-            Argument.NotNull(() => instance);
+            Argument.NotNull(instance, nameof(instance));
 
             instance.RegisterModule(new EventHubLoggingModule());
         }
@@ -29,8 +29,8 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <returns>Returns the container instance for method chaining.</returns>
         public static void UseEventHubLogging(this ApplicationContainer instance, EventHubLoggingOptions options)
         {
-            Argument.NotNull(() => instance);
-            Argument.NotNull(() => options);
+            Argument.NotNull(instance, nameof(instance));
+            Argument.NotNull(options, nameof(options));
 
             instance.RegisterModule(new EventHubLoggingModule(options));
         }
@@ -43,8 +43,8 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <returns>Returns the container instance for method chaining.</returns>
         public static void UseEventHubLogging(this ApplicationContainer instance, Action<EventHubLoggingOptions> configuration)
         {
-            Argument.NotNull(() => instance);
-            Argument.NotNull(() => configuration);
+            Argument.NotNull(instance, nameof(instance));
+            Argument.NotNull(configuration, nameof(configuration));
 
             instance.RegisterModule(new EventHubLoggingModule(configuration));
         }

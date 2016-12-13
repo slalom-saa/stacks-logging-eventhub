@@ -27,7 +27,7 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <param name="configuration">The configuration routine.</param>
         public EventHubLoggingModule(Action<EventHubLoggingOptions> configuration)
         {
-            Argument.NotNull(() => configuration);
+            Argument.NotNull(configuration, nameof(configuration));
 
             configuration(_options);
         }
@@ -38,7 +38,7 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <param name="options">The options to use.</param>
         public EventHubLoggingModule(EventHubLoggingOptions options)
         {
-            Argument.NotNull(() => options);
+            Argument.NotNull(options, nameof(options));
 
             _options = options;
         }
@@ -60,8 +60,8 @@ namespace Slalom.Stacks.Logging.EventHub
                     .OnPreparing(e =>
                     {
                         var configuration = e.Context.Resolve<IConfiguration>();
-                        _options.ConnectionString = configuration["Stacks:Logging:EventHub:ConnectionString"] ?? _options.ConnectionString;
-                        _options.EventHubName = configuration["Stacks:Logging:EventHub:Name"] ?? _options.EventHubName;
+                        _options.ConnectionString = configuration.GetOptionalSetting("Stacks:Logging:EventHub:ConnectionString", _options.ConnectionString);
+                        _options.EventHubName = configuration.GetOptionalSetting("Stacks:Logging:EventHub:Name", _options.EventHubName);
                     });
         }
     }
