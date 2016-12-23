@@ -15,7 +15,8 @@
     "Microsoft.Extensions.Configuration.UserSecrets": "1.1.0",
     "Slalom.Stacks.Logging.EventHub": {
       "target": "project"
-    }
+    },
+    "Slalom.Stacks.Test": "1.0.1"
   },
   "frameworks": {
     "netcoreapp1.0": {
