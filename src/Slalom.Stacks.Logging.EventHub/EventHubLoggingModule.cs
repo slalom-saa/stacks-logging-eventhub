@@ -12,25 +12,7 @@ namespace Slalom.Stacks.Logging.EventHub
     /// <seealso cref="Autofac.Module" />
     public class EventHubLoggingModule : Module
     {
-        private readonly EventHubLoggingOptions _options = new EventHubLoggingOptions();
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventHubLoggingModule"/> class.
-        /// </summary>
-        public EventHubLoggingModule()
-        {
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="EventHubLoggingModule" /> class.
-        /// </summary>
-        /// <param name="configuration">The configuration routine.</param>
-        public EventHubLoggingModule(Action<EventHubLoggingOptions> configuration)
-        {
-            Argument.NotNull(configuration, nameof(configuration));
-
-            configuration(_options);
-        }
+        private readonly EventHubLoggingOptions _options;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="EventHubLoggingModule" /> class.
@@ -54,15 +36,15 @@ namespace Slalom.Stacks.Logging.EventHub
             base.Load(builder);
 
             builder.Register(c => new EventHubAuditStore(_options))
-                    .AsImplementedInterfaces()
-                    .AsSelf()
-                    .SingleInstance()
-                    .OnPreparing(e =>
-                    {
-                        var configuration = e.Context.Resolve<IConfiguration>();
-                        _options.ConnectionString = configuration.GetOptionalSetting("Stacks:Logging:EventHub:ConnectionString", _options.ConnectionString);
-                        _options.EventHubName = configuration.GetOptionalSetting("Stacks:Logging:EventHub:Name", _options.EventHubName);
-                    });
+                   .AsImplementedInterfaces()
+                   .AsSelf()
+                   .SingleInstance()
+                   .OnPreparing(e =>
+                   {
+                       var configuration = e.Context.Resolve<IConfiguration>();
+                       _options.ConnectionString = configuration.GetOptionalSetting("Stacks:Logging:EventHub:ConnectionString", _options.ConnectionString);
+                       _options.EventHubName = configuration.GetOptionalSetting("Stacks:Logging:EventHub:Name", _options.EventHubName);
+                   });
         }
     }
 }

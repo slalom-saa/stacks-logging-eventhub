@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using ConsoleClient.Commands;
-using ConsoleClient.Commands.AddItem;
 using Slalom.Stacks.Configuration;
 using Slalom.Stacks.Logging.EventHub;
+using Slalom.Stacks.Test.Commands.AddItem;
 
 // ReSharper disable AccessToDisposedClosure
 
@@ -29,7 +28,7 @@ namespace ConsoleClient
             {
                 var watch = new Stopwatch();
                 int count = 1000;
-                using (var container = new ApplicationContainer(this))
+                using (var container = new ApplicationContainer(typeof(AddItemCommand)))
                 {
                     container.UseEventHubLogging();
 
