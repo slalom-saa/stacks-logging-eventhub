@@ -3,9 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Azure.EventHubs;
 using Newtonsoft.Json;
-using Slalom.Stacks.Communication;
-using Slalom.Stacks.Communication.Logging;
-using Slalom.Stacks.Runtime;
+using Slalom.Stacks.Messaging.Logging;
 using Slalom.Stacks.Validation;
 
 namespace Slalom.Stacks.Logging.EventHub
@@ -13,7 +11,7 @@ namespace Slalom.Stacks.Logging.EventHub
     /// <summary>
     /// An Azure Event Hub <see cref="IAuditStore"/> implementation.
     /// </summary>
-    /// <seealso cref="Slalom.Stacks.Communication.Logging.IAuditStore" />
+    /// <seealso cref="Slalom.Stacks.Messaging.Logging.IAuditStore" />
     /// <seealso cref="System.IDisposable" />
     public class EventHubAuditStore : IAuditStore, IDisposable
     {
@@ -33,12 +31,11 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <summary>
         /// Appends an audit with the specified execution elements.
         /// </summary>
-        /// <param name="event">The raised event.</param>
-        /// <param name="context">The current <see cref="T:Slalom.Boost.Commands.CommandContext" /> instance.</param>
+        /// <param name="audit">The audit entry to append.</param>
         /// <returns>A task for asynchronous programming.</returns>
-        public Task AppendAsync(IEvent @event, ExecutionContext context)
+        public Task AppendAsync(AuditEntry audit)
         {
-            var content = JsonConvert.SerializeObject(new Audit(@event, context));
+            var content = JsonConvert.SerializeObject(audit);
             var eventData = new EventData(Encoding.UTF8.GetBytes(content));
             return _client.SendAsync(eventData);
         }
