@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using Slalom.Stacks;
 using Slalom.Stacks.Configuration;
 using Slalom.Stacks.Logging.EventHub;
-using Slalom.Stacks.Test.Commands.AddItem;
+using Slalom.Stacks.Test.Examples.Actors.Items.Add;
 
 // ReSharper disable AccessToDisposedClosure
 
@@ -37,7 +38,7 @@ namespace ConsoleClient
                     var tasks = new List<Task>(count);
                     Parallel.For(0, count, new ParallelOptions { MaxDegreeOfParallelism = 4 }, e =>
                     {
-                        tasks.Add(container.Bus.SendAsync(new AddItemCommand(DateTime.Now.Ticks.ToString())));
+                        tasks.Add(container.SendAsync(new AddItemCommand(DateTime.Now.Ticks.ToString())));
                     });
                     await Task.WhenAll(tasks);
 
