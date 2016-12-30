@@ -14,6 +14,10 @@ namespace Slalom.Stacks.Logging.EventHub
 
         internal string ConnectionString { get; set; }
 
+        internal int BatchSize { get; set; } = 100;
+
+        internal TimeSpan Period { get; set; } = TimeSpan.FromSeconds(5);
+
         /// <summary>
         /// Sets the connection string to use.
         /// </summary>
