@@ -15,20 +15,20 @@ namespace Slalom.Stacks.Logging.EventHub
     /// </summary>
     /// <seealso cref="Slalom.Stacks.Messaging.Logging.IAuditStore" />
     /// <seealso cref="System.IDisposable" />
-    public class EventHubAuditStore : PeriodicBatcher<AuditEntry>, IAuditStore
+    public class EventHubRequestStore : PeriodicBatcher<RequestEntry>, IRequestStore
     {
         private readonly EventHubClient _client;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="EventHubAuditStore"/> class.
+        /// Initializes a new instance of the <see cref="EventHubRequestStore"/> class.
         /// </summary>
         /// <param name="options">The options to use.</param>
-        public EventHubAuditStore(EventHubLoggingOptions options)
+        public EventHubRequestStore(EventHubLoggingOptions options)
             : base(options.BatchSize, options.Period)
         {
             Argument.NotNull(options, nameof(options));
 
-            _client = EventHubClient.CreateFromConnectionString(options.ConnectionString + ";EntityPath=" + options.EventsEventHubName);
+            _client = EventHubClient.CreateFromConnectionString(options.ConnectionString + ";EntityPath=" + options.RequestsEventHubName);
         }
 
         /// <summary>
@@ -36,19 +36,19 @@ namespace Slalom.Stacks.Logging.EventHub
         /// </summary>
         /// <param name="audit">The audit entry to append.</param>
         /// <returns>A task for asynchronous programming.</returns>
-        public async Task AppendAsync(AuditEntry audit)
+        public async Task AppendAsync(RequestEntry audit)
         {
             this.Emit(audit);
         }
 
-        protected override async Task EmitBatchAsync(IEnumerable<AuditEntry> events)
+        protected override async Task EmitBatchAsync(IEnumerable<RequestEntry> events)
         {
             var data = events.Select(e => this.GetEventData(e));
 
             await _client.SendAsync(data);
         }
 
-        EventData GetEventData(AuditEntry audit)
+        EventData GetEventData(RequestEntry audit)
         {
             var content = JsonConvert.SerializeObject(audit);
             return new EventData(Encoding.UTF8.GetBytes(content));

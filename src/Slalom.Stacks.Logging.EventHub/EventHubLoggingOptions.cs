@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Slalom.Stacks.Validation;
 
@@ -10,9 +9,15 @@ namespace Slalom.Stacks.Logging.EventHub
     /// </summary>
     public class EventHubLoggingOptions
     {
-        internal string EventHubName { get; set; }
+        internal int BatchSize { get; set; } = 100;
 
         internal string ConnectionString { get; set; }
+
+        internal string EventsEventHubName { get; set; } = "Events";
+
+        internal TimeSpan Period { get; set; } = TimeSpan.FromSeconds(5);
+
+        internal string RequestsEventHubName { get; set; } = "Requests";
 
         /// <summary>
         /// Sets the connection string to use.
@@ -30,15 +35,16 @@ namespace Slalom.Stacks.Logging.EventHub
         /// <summary>
         /// Sets the event hub name to use.
         /// </summary>
-        /// <param name="name">The event hub name to use.</param>
+        /// <param name="events">The events event hub name to use.</param>
+        /// <param name="requests">The requests event hub name to use.</param>
         /// <returns>Returns this instance for method chaining.</returns>
-        public EventHubLoggingOptions WithEventHubName(string name)
+        public EventHubLoggingOptions WithEventHubNames(string events, string requests)
         {
-            Argument.NotNullOrWhiteSpace(name, nameof(name));
+            Argument.NotNullOrWhiteSpace(events, nameof(events));
 
-            this.EventHubName = name;
+            this.EventsEventHubName = events;
+            this.RequestsEventHubName = requests;
             return this;
         }
-
     }
 }
