@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Slalom.Stacks;
 using Slalom.Stacks.Configuration;
 using Slalom.Stacks.Logging.EventHub;
+using Slalom.Stacks.Test.Examples;
 using Slalom.Stacks.Test.Examples.Actors.Items.Add;
 
 // ReSharper disable AccessToDisposedClosure
@@ -18,43 +19,14 @@ namespace ConsoleClient
     {
         public static void Main(string[] args)
         {
-            Task.Run(() => new Program().Start());
+            var runner = new ExampleRunner(typeof(EventHubAuditStore));
+            runner.With(e => e.UseEventHubLogging());
+            runner.Start(2);
+
             Console.WriteLine("Running application.  Press any key to halt...");
             Console.ReadKey();
         }
 
-        public async Task Start()
-        {
-            try
-            {
-                var watch = new Stopwatch();
-                int count = 1000;
-                using (var container = new ApplicationContainer(typeof(AddItemCommand)))
-                {
-                    container.UseEventHubLogging();
-
-                    watch.Start();
-
-                    var tasks = new List<Task>(count);
-                    Parallel.For(0, count, new ParallelOptions { MaxDegreeOfParallelism = 4 }, e =>
-                    {
-                        tasks.Add(container.SendAsync(new AddItemCommand(DateTime.Now.Ticks.ToString())));
-                    });
-                    await Task.WhenAll(tasks);
-
-                    watch.Stop();
-                }
-
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Execution for {count:N0} items completed successfully in {watch.Elapsed} - {Math.Ceiling(count / watch.Elapsed.TotalSeconds):N0} per second.  Press any key to exit...");
-                Console.ResetColor();
-            }
-            catch (Exception exception)
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(exception);
-                Console.ResetColor();
-            }
-        }
+        
     }
 }

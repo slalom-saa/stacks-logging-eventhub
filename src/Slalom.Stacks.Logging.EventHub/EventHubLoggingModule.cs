@@ -43,8 +43,19 @@ namespace Slalom.Stacks.Logging.EventHub
                    {
                        var configuration = e.Context.Resolve<IConfiguration>();
                        _options.ConnectionString = configuration.GetOptionalSetting("Stacks:Logging:EventHub:ConnectionString", _options.ConnectionString);
-                       _options.EventHubName = configuration.GetOptionalSetting("Stacks:Logging:EventHub:Name", _options.EventHubName);
+                       _options.EventsEventHubName = configuration.GetOptionalSetting("Stacks:Logging:EventHub:Name", _options.EventsEventHubName);
                    });
+
+            builder.Register(c => new EventHubRequestStore(_options))
+                .AsImplementedInterfaces()
+                .AsSelf()
+                .SingleInstance()
+                .OnPreparing(e =>
+                {
+                    var configuration = e.Context.Resolve<IConfiguration>();
+                    _options.ConnectionString = configuration.GetOptionalSetting("Stacks:Logging:EventHub:ConnectionString", _options.ConnectionString);
+                    _options.RequestsEventHubName = configuration.GetOptionalSetting("Stacks:Logging:EventHub:Name", _options.RequestsEventHubName);
+                });
         }
     }
 }
