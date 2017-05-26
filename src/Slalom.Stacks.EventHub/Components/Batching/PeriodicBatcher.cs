@@ -17,8 +17,9 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Slalom.Stacks.Logging;
 
-namespace Slalom.Stacks.Logging.EventHub
+namespace Slalom.Stacks.EventHub.Components.Batching
 {
     public abstract class PeriodicBatcher<T> : IDisposable
     {

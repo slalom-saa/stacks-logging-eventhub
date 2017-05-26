@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Slalom.Stacks.Logging.EventHub
+namespace Slalom.Stacks.EventHub.Components.Batching
 {
     /// <summary>
     /// Manages reconnection period and transient fault response for Periodic Batching.

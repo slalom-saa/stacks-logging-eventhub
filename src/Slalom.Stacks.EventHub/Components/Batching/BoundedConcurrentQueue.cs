@@ -18,7 +18,7 @@ using System;
 using System.Collections.Concurrent;
 using System.Threading;
 
-namespace Slalom.Stacks.Logging.EventHub
+namespace Slalom.Stacks.EventHub.Components.Batching
 {
     class BoundedConcurrentQueue<T> 
     {

@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{43D52525-E7CB-47C9-897F-C85368EECE82}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "assets", "assets", "{6815D6E5-66EC-4364-B748-F32ED602ED88}"
+	ProjectSection(SolutionItems) = preProject
+		assets\Package.ps1 = assets\Package.ps1
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{77EFA857-11DB-47A2-B956-58425B593255}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleClient", "ConsoleClient\ConsoleClient.csproj", "{F9A86B85-E309-4005-B05D-6BD0E813EE38}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Slalom.Stacks.EventHub", "src\Slalom.Stacks.EventHub\Slalom.Stacks.EventHub.csproj", "{66D812B5-6DBE-424B-BD51-72A024C4AF88}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F9A86B85-E309-4005-B05D-6BD0E813EE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9A86B85-E309-4005-B05D-6BD0E813EE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9A86B85-E309-4005-B05D-6BD0E813EE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9A86B85-E309-4005-B05D-6BD0E813EE38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66D812B5-6DBE-424B-BD51-72A024C4AF88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D812B5-6DBE-424B-BD51-72A024C4AF88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D812B5-6DBE-424B-BD51-72A024C4AF88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D812B5-6DBE-424B-BD51-72A024C4AF88}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F9A86B85-E309-4005-B05D-6BD0E813EE38} = {77EFA857-11DB-47A2-B956-58425B593255}
+		{66D812B5-6DBE-424B-BD51-72A024C4AF88} = {43D52525-E7CB-47C9-897F-C85368EECE82}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,46 @@
+﻿{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "eventHub": {
+      "description": "Options for the Azure Event Hub Logging.",
+      "type": "object",
+      "properties": {
+        "batchSize": {
+          "type": "integer",
+          "description": "The size of the batch used for writing.",
+          "default": 15
+        },
+        "connectionString": {
+          "type": "string",
+          "description": "The event hub connection string."
+        },
+        "hubName": {
+          "type": "string",
+          "description": "The events event hub name.",
+          "default": "Events"
+        },
+        "period": {
+          "type": "string",
+          "description": "The time between batches.",
+          "default": "00:05"
+        }
+      }
+    }
+  },
+  "properties": {
+    "stacks": {
+      "properties": {
+        "logging": {
+          "type": "object",
+          "properties": {
+            "eventHub": {
+              "$ref": "#/definitions/eventHub"
+            }
+          }
+        }
+      },
+      "type": "object"
+    }
+  },
+  "type": "object"
+}

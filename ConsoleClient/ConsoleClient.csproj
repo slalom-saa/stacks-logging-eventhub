@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net461</TargetFramework>
+  </PropertyGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties stacks_1json__JSONSchema="..\src\Slalom.Stacks.EventHub\schema.json" /></VisualStudio></ProjectExtensions>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Slalom.Stacks.EventHub\Slalom.Stacks.EventHub.csproj" />
+  </ItemGroup>
+
+</Project>

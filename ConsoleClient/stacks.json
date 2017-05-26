@@ -1,0 +1,10 @@
+﻿{
+  "stacks": {
+    "logging": {
+      "eventHub": {
+        "connectionString": "Endpoint=sb://arch-event-hubs.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=hPnLcoEUmWVHa0OXD4N6yRJJ29jx4qUxiAYMg3+amdo=",
+        "hubName": "events"
+      }
+    }
+  }
+}

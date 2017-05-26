@@ -16,7 +16,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Slalom.Stacks.Logging.EventHub
+namespace Slalom.Stacks.EventHub.Components.Batching
 {
     class PortableTimer : IDisposable
     {
