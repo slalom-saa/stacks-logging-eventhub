@@ -11,8 +11,11 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+//
+// Modifications copyright(C) Stacks Contributors
 
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -87,7 +90,7 @@ namespace Slalom.Stacks.EventHub.Components.Batching
                         {
                             return;
                         }
-                    }                    
+                    }
 
                     _running = true;
                 }
@@ -99,7 +102,7 @@ namespace Slalom.Stacks.EventHub.Components.Batching
             }
             catch (OperationCanceledException tcx)
             {
-                //SelfLog.WriteLine("The timer was canceled during invocation: {0}", tcx);
+                Trace.TraceError("The timer was canceled during invocation: {0}", tcx);
             }
             finally
             {
@@ -114,7 +117,7 @@ namespace Slalom.Stacks.EventHub.Components.Batching
         public void Dispose()
         {
             _cancel.Cancel();
-            
+
             lock (_stateLock)
             {
                 if (_disposed)

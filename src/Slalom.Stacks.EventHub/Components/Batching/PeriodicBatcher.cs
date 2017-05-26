@@ -11,7 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-// Modifications copyright(C) 2017 Slalom Architect Academy
+//
+// Modifications copyright(C) Stacks Contributors
 
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using Slalom.Stacks.Logging;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Slalom.Stacks.EventHub.Components.Batching
 {
     public abstract class PeriodicBatcher<T> : IDisposable
     {
-        private readonly int _batchSizeLimit = 100;
+        private readonly int _batchSizeLimit;
 
         protected ILogger Logger { get; set; }
 
@@ -38,9 +40,11 @@ namespace Slalom.Stacks.EventHub.Components.Batching
 
         bool _unloading;
 
-        protected virtual async Task EmitBatchAsync(IEnumerable<T> events)
+        protected virtual Task EmitBatchAsync(IEnumerable<T> events)
         {
             this.EmitBatch(events);
+
+            return Task.FromResult(0);
         }
 
         protected virtual void EmitBatch(IEnumerable<T> events)
@@ -69,7 +73,7 @@ namespace Slalom.Stacks.EventHub.Components.Batching
         }
 
         /// <summary>
-        /// Finalizes an instance of the <see cref="LogStore"/> class.
+        /// Finalizes an instance of the <see cref="PeriodicBatcher{T}"/> class.
         /// </summary>
         ~PeriodicBatcher()
         {
@@ -159,7 +163,9 @@ namespace Slalom.Stacks.EventHub.Components.Batching
                 if (_status.ShouldDropQueue)
                 {
                     T evt;
+#pragma warning disable S108 // Nested blocks of code should not be left empty
                     while (_queue.TryDequeue(out evt)) { }
+#pragma warning restore S108 // Nested blocks of code should not be left empty
                 }
 
                 lock (_stateLock)
@@ -218,3 +224,4 @@ namespace Slalom.Stacks.EventHub.Components.Batching
 
     }
 }
+#pragma warning restore CS1591 // Missing XML comment for publicly visible type or member
