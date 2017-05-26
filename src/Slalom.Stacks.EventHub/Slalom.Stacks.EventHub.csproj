@@ -7,7 +7,7 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <AssemblyName>Slalom.Stacks.EventHub</AssemblyName>
     <PackageId>Slalom.Stacks.EventHub</PackageId>
-    <PackageTags>slalom;stacks;;azure;eventhub</PackageTags>
+    <PackageTags>slalom;stacks;azure;eventhub</PackageTags>
     <PackageLicenseUrl>https://github.com/slalom-saa/stacks/blob/master/LICENSE</PackageLicenseUrl>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
