@@ -16,7 +16,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Version>1.9.2</Version>
+    <Version>1.9.3</Version>
     <Description>Contains components to publish events to Azure Event Hubs.</Description>
     <PackageProjectUrl>https://github.com/slalom-saa/stacks</PackageProjectUrl>
   </PropertyGroup>
