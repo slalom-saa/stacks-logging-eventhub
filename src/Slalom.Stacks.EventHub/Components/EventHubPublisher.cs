@@ -28,7 +28,7 @@ namespace Slalom.Stacks.EventHub.Components
     /// <seealso href="https://azure.microsoft.com/en-us/services/event-hubs/"/>
     public class EventHubPublisher : PeriodicBatcher<EventEntry>, IEventPublisher
     {
-        private readonly Application _application;
+        private readonly ApplicationInformation _application;
         private readonly EventHubClient _client;
 
         /// <summary>
@@ -38,7 +38,7 @@ namespace Slalom.Stacks.EventHub.Components
         /// <param name="options">The event hub options.</param>
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="options"/> argument is null.</exception>
         /// <exception cref="System.ArgumentNullException">Thrown when the <paramref name="application"/> argument is null.</exception>
-        public EventHubPublisher(Application application, EventHubOptions options)
+        public EventHubPublisher(ApplicationInformation application, EventHubOptions options)
             : base(options.BatchSize, options.Period)
         {
             Argument.NotNull(options, nameof(options));
